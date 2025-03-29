@@ -1,5 +1,15 @@
-Befehl:			Auswirkung:
-cd				change directory
-ls				inhalt des directory anzeigen
-git init		aktuelles directory aktivieren und als main definieren
-git 
+Befehl:								Auswirkung:
+
+# Allgemein
+cd									change directory
+ls									inhalt des directory anzeigen
+git add .							alle dateien stagen
+git commit							alle dateien die gestaged sind erhöhen
+git add <name>						nur diese datei stagen
+
+# git einrichten
+git init							aktuelles directory aktivieren und als main definieren
+git remote -v						Upload URL's anzeigen lassen
+git remote set-url					Upload URL's ändern (für SSH-Key)
+git config --global user.name		Benutzernamen ändern
+git config --global user.mail		Mailadresse ändern
