@@ -1,0 +1,5 @@
+Befehl:			Auswirkung:
+cd				change directory
+ls				inhalt des directory anzeigen
+git init		aktuelles directory aktivieren und als main definieren
+git 
