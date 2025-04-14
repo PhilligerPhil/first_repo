@@ -1,0 +1,60 @@
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection.Metadata.Ecma335;
+using System.Text;
+using System.Threading.Tasks;
+using oop_intro;
+
+namespace oop_intro
+{
+    class Triangle
+    {
+        private string _name;
+        private double _sideA;
+        private double _sideB;
+        private double _sideC;
+
+        public Triangle(string name, double sideA, double sideB, double sideC)
+        {
+            _name = name;
+            _sideA = sideA;
+            _sideB = sideB;
+            _sideC = sideC;
+        }
+
+        public void Draw()
+        {
+            Console.WriteLine("Name des Dreiecks: " + _name);
+            Console.WriteLine("Seitenlänge A: " + _sideA);
+            Console.WriteLine("Seitenlänge B: " + _sideB);
+            Console.WriteLine("Seitenlänge C: " + _sideC + "\n");
+        }
+
+        public void Checkpossibility()
+        {
+            double tmp = _sideA + _sideB;
+            double tmp2 = _sideC;
+
+            if (tmp >= tmp2)
+            {
+                Console.WriteLine("Triangle: " + _name + " not drawable. \nSides A + B are bigger than side C");
+            }
+        }
+    }
+}
+
+internal class Program
+{
+    static void Main(string[] args)
+    {
+        Triangle T1 = new Triangle(Console.ReadLine(), Convert.ToDouble(Console.ReadLine()), Convert.ToDouble(Console.ReadLine()), Convert.ToDouble(Console.ReadLine()));
+        T1.Checkpossibility();
+        T1.Draw();
+
+        Triangle T2 = new Triangle("Werners Bruders Dreieck", 2, 2, 7);
+        T2.Checkpossibility();
+        T2.Draw();
+    }
+}
