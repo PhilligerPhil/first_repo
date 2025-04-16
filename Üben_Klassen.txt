@@ -37,11 +37,52 @@ namespace oop_intro
             double tmp = _sideA + _sideB;
             double tmp2 = _sideC;
 
-            if (tmp >= tmp2)
+            if (tmp <= tmp2)
             {
-                Console.WriteLine("Triangle: " + _name + " not drawable. \nSides A + B are bigger than side C");
+                Console.WriteLine("Triangle: " + _name + " not drawable. \nSides A + B are smaller or equal to side C\n");
+            }
+            else
+                Draw();
+        }
+    }
+
+
+    class Circle
+    {
+        private string _description;
+        private double _radius;
+        private double _diameter;
+
+        public Circle(string description, double radius, double diameter)
+        {
+            _description = description;
+            _radius = radius;
+            _diameter = diameter;
+        }
+
+        public void Umrechner()
+        {
+            if (_diameter == 0)
+                _diameter = 2 * _radius;
+            else if (_radius == 0)
+                _radius = _diameter / 2;
+            else if (_radius != 0 && _radius != _diameter / 2 || _diameter != 0 && _diameter != _radius * 2)
+                Console.WriteLine("Shape not drawable, since radius and diameter are not divisible! \n Restart Programm!\n");
+            else
+            {
+                _diameter = _diameter;
+                _radius = _radius;
+                Draw();
             }
         }
+
+        public void Draw()
+        {
+            Console.WriteLine("Gewählter Name des Kreises: " + _description);
+            Console.WriteLine("Gewählter Radius: " + _radius);
+            Console.WriteLine("Geählter Durchmesser: " + _diameter);
+        }
+
     }
 }
 
@@ -49,12 +90,19 @@ internal class Program
 {
     static void Main(string[] args)
     {
+        Console.WriteLine("Enter Values in following order:\n1.) Name of ur shape\n2.) Length of side A\n3.) Length of side B\n4.) Length of side C\n\n");
         Triangle T1 = new Triangle(Console.ReadLine(), Convert.ToDouble(Console.ReadLine()), Convert.ToDouble(Console.ReadLine()), Convert.ToDouble(Console.ReadLine()));
         T1.Checkpossibility();
-        T1.Draw();
 
         Triangle T2 = new Triangle("Werners Bruders Dreieck", 2, 2, 7);
         T2.Checkpossibility();
-        T2.Draw();
+
+
+        Console.WriteLine();
+        Console.WriteLine();
+
+
+        Circle C1 = new Circle("erster Kreis", 1, 8.568472);
+        C1.Umrechner();
     }
 }
