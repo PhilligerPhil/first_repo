@@ -1,8 +1,18 @@
-Werner hat Durchfall weil er so viel Döner as.
+Befehl:								           Auswirkung:
 
-Nachdem er drei tage Kohletabletten inturbierte, wurde es besser.
+# Allgemein
+cd									            change directory
+ls									            inhalt des directory anzeigen
+git add .							          alle dateien stagen
+git commit							        alle dateien die gestaged sind erhöhen
+git add <name>						      nur diese datei stagen
+git status							        status der dateien und auf version mit online repo kontrollieren
 
-Alter des mit den SSH Keays is ein pain, wenn die fucking url mit https ned funktioniert und ma den ganzens scheiss erst umstellen muss.
-wtf
 
-Show für Dani
+# git einrichten
+git init							          aktuelles directory aktivieren und als main definieren
+git remote -v						        Upload URL's anzeigen lassen
+git remote set-url					    Upload URL's ändern (für SSH-Key)
+git config --global user.name		Benutzernamen ändern
+git config --global user.mail		Mailadresse ändern
+git remote rm						        löschen von remote url
