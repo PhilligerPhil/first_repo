@@ -1,0 +1,98 @@
+namespace oop_intro
+{
+
+    class Bruchrechnung
+    {
+        private int _zaehler1;
+        private int _nenner1;
+        private int _zaehler2;
+        private int _nenner2;
+
+        public void Setdata1(int zaehler1 = 0, int nenner1 = 1)
+        {
+            Console.Write("Zaehler eingeben:\n>"); zaehler1 = Convert.ToInt16(Console.ReadLine());
+            Console.Write("Nenner eingeben:\n>"); nenner1 = Convert.ToInt16(Console.ReadLine());
+            _zaehler1 = zaehler1;
+            _nenner1 = nenner1;
+        }
+
+        public void Setdata2(int zaehler2 = 0, int nenner2 = 1)
+        {
+            Console.Write("\nZaehler eingeben:\n>"); zaehler2 = Convert.ToInt16(Console.ReadLine());
+            Console.Write("Nenner eingeben:\n>"); nenner2 = Convert.ToInt16(Console.ReadLine());
+            _zaehler2 = zaehler2;
+            _nenner2 = nenner2;
+        }
+
+        public void userfrage()
+        {
+            char antwort;
+
+            Console.Write("Eingegebene Brueche korrekt?:\nBruch 1: " + _zaehler1 + "/" + _nenner1 + "\nBruch 2: " + _zaehler2 + "/" + _nenner2 +"\n'y' für ja, 'n' für nein\n>");
+            antwort = Convert.ToChar(Console.ReadLine());
+
+            if (antwort == 'y')
+            {
+                Console.WriteLine("Welche Rechenoperation wollen Sie vornehmen?\n");
+                Rechenoperation();
+            }
+
+            else if (antwort == 'n')
+                Console.WriteLine("Bitte Programm neu starten und korrekte Eingabe machen");
+
+            else
+                Console.WriteLine("Nur Eingaben in der Form 'y' für ja oder 'n' für nein erlaubt.\nProgramm neu starten");
+        }
+
+        public void Rechenoperation()
+        {
+            char OP;
+
+            Console.Write("a ... fuer addition\ns ... fuer Subtraktion\nm ... fuer Multiplikation\nd ... fuer Division\n>");
+            OP = Convert.ToChar(Console.ReadLine());
+
+            if (OP == 'a')
+                addition();
+            else if (OP == 's')
+            {
+                Console.WriteLine("not specified");
+                Rechenoperation();
+            }
+            else if (OP == 'm')
+            {
+                Console.WriteLine("not specified");
+                Rechenoperation();
+            }
+            else if (OP == 'd')
+            {
+                Console.WriteLine("not specified");
+                Rechenoperation();
+            }
+            else
+            {
+                Console.WriteLine("Enter correct command");
+                Rechenoperation();
+            }
+        }
+
+        public void addition()
+        {
+            double Bruch1 = Convert.ToDouble(_zaehler1) / Convert.ToDouble(_nenner1);
+            double Bruch2 = Convert.ToDouble(_zaehler2) / Convert.ToDouble(_nenner2);
+            double tmp = Bruch1 + Bruch2;
+
+            Console.Write("Ergebnis: " + tmp +"\n");
+        }
+    }
+    internal class Program
+    {
+
+        static void Main(string[] args)
+        {
+            Bruchrechnung B1 = new Bruchrechnung();
+            B1.Setdata1();
+            B1.Setdata2();
+            B1.userfrage();
+        }
+    }
+}
