@@ -1,0 +1,40 @@
+using System;
+using System.Drawing;
+using System.Xml.Linq;
+class Triangle
+{
+    private double _a;
+    private double _b;
+    private double _c;
+
+    public Triangle(double a, double b, double c)
+    {
+    _a = a;
+    _b = b;
+    _c = c;
+    }
+
+    public double GetArea()
+    {
+        double _s = 0;
+        _s = (_a + _b + _c) / 2;
+        return Math.Sqrt(_s(_s - _a) (_s - _b) * (_s - _c));
+
+    }
+
+    public double GetCircumference()
+    {
+        return _a + _b + _c;
+    }
+
+}
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        Triangle triangle1 = new Triangle(4.5, 3.5, 6.3);
+
+        Console.WriteLine("Flaeche:  " + triangle1.GetArea());
+        Console.WriteLine("Umfang:  " + triangle1.GetCircumference());
+    }
+}

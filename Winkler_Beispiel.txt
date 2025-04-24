@@ -1,0 +1,162 @@
+using System.Drawing; // Für die Verwendung von Farben (Color)
+using System.Reflection.Metadata; // (Wird hier eigentlich nicht gebraucht – kann entfernt werden)
+
+// Abstrakte Basisklasse Shape (Form), von der andere Formen erben
+abstract class Shape
+{
+    // Geschützte Felder (werden von abgeleiteten Klassen benutzt)
+    protected string _name;
+    protected Color _colour;
+    protected int _brush_strength;
+
+    // Konstruktor – wird beim Erstellen eines Objekts aufgerufen
+    public Shape(string name, Color colour, int brush_strength)
+    {
+        _name = name;
+        _colour = colour;
+        _brush_strength = brush_strength;
+    }
+
+    // Virtuelle Methode – kann von Kindklassen überschrieben werden
+    public virtual void Draw()
+    {
+        Console.WriteLine("=======================");
+        Console.WriteLine(_name + ":");
+        Console.WriteLine("Color = " + _colour);
+        Console.WriteLine("Brush Strength = " + _brush_strength);
+        Console.WriteLine("=======================");
+    }
+
+    // Abstrakte Methoden – müssen in jeder abgeleiteten Klasse überschrieben werden
+    public abstract double GetCircumference(); // Umfang berechnen
+    public abstract double GetArea(); // Fläche berechnen
+}
+
+// Abgeleitete Klasse Circle (Kreis)
+class Circle : Shape
+{
+    private double _radius; // eigener Wert für den Radius
+
+    // Konstruktor für Kreis – setzt Name und Radius, übergibt feste Farbe & Pinselstärke an die Basisklasse
+    public Circle(string name, double radius) : base(name, Color.Black, 3)
+    {
+        _radius = radius;
+    }
+
+    // Berechnet den Umfang eines Kreises
+    public override double GetCircumference()
+    {
+        return 2 * _radius * Math.PI;
+    }
+
+    // Berechnet die Fläche eines Kreises
+    public override double GetArea()
+    {
+        return Math.PI * _radius * _radius;
+    }
+
+    // Eigene Darstellung der Zeichenmethode für Kreis
+    public override void Draw()
+    {
+        Console.WriteLine("===========Circle===============");
+        Console.WriteLine(_name + ":");
+        Console.WriteLine("Color = " + _colour);
+        Console.WriteLine("Brush Strength = " + _brush_strength);
+        Console.WriteLine("Radius = " + _radius);
+        Console.WriteLine("Circumference = " + GetCircumference());
+        Console.WriteLine("Area = " + GetArea());
+        Console.WriteLine("================================");
+    }
+}
+
+// Abgeleitete Klasse Rectangle (Rechteck)
+class Rectangle : Shape
+{
+    private double _length; // Länge des Rechtecks
+    private double _width;  // Breite des Rechtecks
+
+    // Konstruktor für Rechteck – setzt Name, Länge und Breite, übergibt Farbe und Pinselstärke an die Basisklasse
+    public Rectangle(string name, double length, double width) : base(name, Color.Blue, 5)
+    {
+        _length = length;
+        _width = width;
+    }
+
+    // Hier ist ein Fehler: Dies berechnet die Fläche, sollte aber Umfang sein!
+    public override double GetCircumference()
+    {
+        return 2 * _length + 2 * _width; // Korrekt: Umfang Rechteck = 2 * (Länge + Breite)
+    }
+
+    // Auch hier ist ein Fehler: Dies berechnet den Umfang, sollte aber Fläche sein!
+    public override double GetArea()
+    {
+        return _length * _width; // Korrekt: Fläche Rechteck = Länge * Breite
+    }
+
+    // Eigene Darstellung der Zeichenmethode für Rechteck
+    public override void Draw()
+    {
+        Console.WriteLine("==========Rectangle=============");
+        Console.WriteLine(_name + ":");
+        Console.WriteLine("Color = " + _colour);
+        Console.WriteLine("Brush Strength = " + _brush_strength);
+        Console.WriteLine("Length = " + _length);
+        Console.WriteLine("Width = " + _width);
+        Console.WriteLine("Circumference = " + GetCircumference());
+        Console.WriteLine("Area = " + GetArea());
+        Console.WriteLine("================================");
+    }
+}
+
+internal class Program
+{
+    // Methode, um eine einzelne Form zu zeichnen
+    static void DrawShape(Shape shape)
+    {
+        shape.Draw(); // Ruft die passende Draw-Methode der Form auf
+    }
+
+    // Methode, um mehrere Formen zu zeichnen (z.B. Liste von Kreisen und Rechtecken)
+    static void DrawShapes(List<Shape> shapes)
+    {
+        foreach (Shape shape in shapes) // Geht durch jede Form in der Liste
+        {
+            shape.Draw(); // Zeichnet die Form
+        }
+    }
+
+    // Berechnet die Gesamtfläche aller Formen in der Liste
+    static double CalculateTotalArea(List<Shape> shapes)
+    {
+        double area = 0.0;
+        foreach (Shape shape in shapes)
+        {
+            area += shape.GetArea(); // Addiert jede einzelne Fläche zur Gesamtfläche
+        }
+        return area;
+    }
+
+    // Einstiegspunkt des Programms
+    static void Main(string[] args)
+    {
+        // Liste von Formen anlegen
+        List<Shape> shapes = new List<Shape>();
+
+        // Neues Kreis-Objekt erstellen
+        Shape circle1 = new Circle("circle 1", 4.5);
+
+        // Neues Rechteck-Objekt erstellen
+        Shape rectangle1 = new Rectangle("rectangle 1", 3.5, 2.5);
+
+        // Objekte zur Liste hinzufügen
+        shapes.Add(circle1);
+        shapes.Add(rectangle1);
+
+        // Alle Formen zeichnen
+        DrawShapes(shapes);
+
+        // Gesamtfläche berechnen und anzeigen
+        Console.WriteLine("Total area is:\n" + CalculateTotalArea(shapes));
+    }
+}
