@@ -60,8 +60,7 @@ namespace oop_intro
             }
             else if (OP == 'm')
             {
-                Console.WriteLine("not specified");
-                Rechenoperation();
+                multiplikation();
             }
             else if (OP == 'd')
             {
@@ -77,13 +76,36 @@ namespace oop_intro
 
         public void addition()
         {
-            double Bruch1 = Convert.ToDouble(_zaehler1) / Convert.ToDouble(_nenner1);
-            double Bruch2 = Convert.ToDouble(_zaehler2) / Convert.ToDouble(_nenner2);
-            double tmp = Bruch1 + Bruch2;
+            //double Bruch1 = Convert.ToDouble(_zaehler1) / Convert.ToDouble(_nenner1);
+            //double Bruch2 = Convert.ToDouble(_zaehler2) / Convert.ToDouble(_nenner2);
+            //double tmp = Bruch1 + Bruch2;
+            double Zaehlerneu = 0;
+            double Nennerneu = 0;
 
-            Console.Write("Ergebnis: " + tmp +"\n");
+            if (_nenner1 == _nenner2)
+            {
+                Nennerneu = _nenner1;
+                Zaehlerneu = _zaehler1 + _zaehler2;
+            }
+            else
+            {
+                Nennerneu = _nenner1 * _nenner2;
+                Zaehlerneu = (_zaehler1 * _nenner2) + (_zaehler2 * _nenner1);
+            }
+
+                Console.Write("Ergebnis: " + Zaehlerneu + "/" + Nennerneu + "\n");
+        }
+
+        public void multiplikation()
+        {
+            double Zaehlerneu = Convert.ToDouble(_zaehler1) * Convert.ToDouble(_zaehler2);
+            double Nennerneu = Convert.ToDouble(_nenner1) * Convert.ToDouble(_nenner2);
+
+            Console.Write("Ergebnis: " +  Zaehlerneu + "/" + Nennerneu + "\n");
         }
     }
+
+
     internal class Program
     {
 
